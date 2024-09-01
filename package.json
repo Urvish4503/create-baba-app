@@ -11,6 +11,12 @@
   "bin": {
     "create-baba-app": "bin/index.js"
   },
+  "files": [
+    "bin"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
