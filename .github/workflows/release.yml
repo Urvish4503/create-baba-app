@@ -7,16 +7,21 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       packages: write
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: "20"
+      - run: npm install
+
       - run: npm run build
+
       - uses: JS-DevTools/npm-publish@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          registry: "https://npm.pkg.github.com"
+          token: ${{ secrets.NPM_TOKEN }}  # Use NPM_TOKEN here
+          registry: "https://registry.npmjs.org/"  # NPM registry
