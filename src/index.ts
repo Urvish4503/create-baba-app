@@ -64,6 +64,23 @@ const project = await p.group({
       initialValue: "backend",
     });
   },
+  prettier: () => {
+    return p.confirm({
+      message: "Would you like to use prettier?",
+      initialValue: true,
+    });
+  },
+  databaseProvider: () => {
+    return p.select({
+      message: "What database provider would you like to use?",
+      options: [
+        { value: "sqlite", label: "SQLite" },
+        { value: "mysql", label: "MySQL" },
+        { value: "postgres", label: "PostgreSQL" },
+      ],
+      initialValue: "sqlite",
+    });
+  },
   onCancel() {
     console.log("Cancelled");
     process.exit(0);
