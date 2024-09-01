@@ -2,33 +2,21 @@ name: Release
 
 on:
   push:
-    branches:
-      - master
-      - beta
-  
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
+    branches: main
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
-
-      - run: npm install
+          node-version: "20"
       - run: npm run build
-      - run: npm audit signatures
-
-      - name: Release
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          registry: "https://npm.pkg.github.com"
