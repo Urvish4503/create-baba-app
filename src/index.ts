@@ -81,10 +81,6 @@ const project = await p.group({
       initialValue: "sqlite",
     });
   },
-  onCancel() {
-    console.log("Cancelled");
-    process.exit(0);
-  },
 });
 
 if (project.name) appName = project.name;

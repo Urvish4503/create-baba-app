@@ -1,5 +1,5 @@
 {
-  "name": "create-baba-app",
+  "name": "@babatools/create-baba-app",
   "version": "0.0.1",
   "main": "bin/index.js",
   "type": "module",
