@@ -1,7 +1,7 @@
 #!usr/bin/env node
 
 import { runCli } from "./cli/index.js";
-import { addDenpendancies } from "./helper/addDependencies.js";
+import { addDependancies } from "./helper/addDependencies.js";
 import { logger } from "./utils/logger.js";
 
 const main = async () => {
@@ -9,7 +9,7 @@ const main = async () => {
     const project = await runCli();
     console.log(project);
     // TODO: Add project creation logic here
-    await addDenpendancies(project);
+    await addDependancies(project);
   } catch (err) {
     logger.error("Aborting installation...");
     if (err instanceof Error) {
