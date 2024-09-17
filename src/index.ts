@@ -2,6 +2,7 @@
 
 import { runCli } from "./cli/index.js";
 import { addDependancies } from "./helper/addDependencies.js";
+import { makeProject } from "./helper/fileMaker.js";
 import { logger } from "./utils/logger.js";
 
 const main = async () => {
@@ -10,6 +11,7 @@ const main = async () => {
     console.log(project);
     // TODO: Add project creation logic here
     await addDependancies(project);
+    makeProject(project);
   } catch (err) {
     logger.error("Aborting installation...");
     if (err instanceof Error) {

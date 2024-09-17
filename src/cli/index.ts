@@ -150,15 +150,17 @@ async function getInteractiveConfig(appName?: string): Promise<ProjectConfig> {
       results.language === "javascript"
         ? p.note(chalk.redBright("Wrong answer, using TypeScript instead"))
         : undefined,
-    styling: () => {
-      return p.select({
-        message: "Which styling solution would you like to use?",
-        options: [
-          { value: "css", label: "Plain CSS" },
-          { value: "tailwind", label: "Tailwind CSS" },
-        ],
-        initialValue: "tailwind",
-      });
+    styling: ({ results }) => {
+      if (results.typeOfApp !== "backend") {
+        return p.select({
+          message: "Which styling solution would you like to use?",
+          options: [
+            { value: "css", label: "Plain CSS" },
+            { value: "tailwind", label: "Tailwind CSS" },
+          ],
+          initialValue: "tailwind",
+        });
+      }
     },
     apiFramework: ({ results }) => {
       if (results.typeOfApp !== "frontend") {
